@@ -210,6 +210,8 @@ impl Struct {
                     }
                 }
                 impl ::std::cmp::Eq for #name {}
+
+                // impl ::std::hash::Hash for #name {}
             }
         } else {
             let compare = fields
@@ -243,6 +245,8 @@ impl Struct {
                         }
                     }
                     impl ::std::cmp::Eq for #name {}
+
+                    // impl ::std::hash::Hash for #name {}
                 }
             } else {
                 quote! {
@@ -252,6 +256,8 @@ impl Struct {
                         }
                     }
                     impl ::std::cmp::Eq for #name {}
+                    
+                    // impl ::std::hash::Hash for #name {}
                 }
             }
         };

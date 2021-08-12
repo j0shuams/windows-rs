@@ -6,7 +6,7 @@ use bindings::Windows::Foundation::{IReference, IStringable, PropertyValue};
 /// [IInspectable](https://docs.microsoft.com/en-us/windows/win32/api/inspectable/nn-inspectable-iinspectable)
 /// interface.
 #[repr(transparent)]
-#[derive(Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq, Hash)]
 pub struct IInspectable(IUnknown);
 
 impl IInspectable {

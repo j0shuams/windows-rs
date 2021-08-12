@@ -18,7 +18,11 @@ pub mod Windows {
         clippy::all
     )]
     pub mod Foundation {
-        #[derive(:: std :: clone :: Clone, :: std :: marker :: Copy)]
+        #[derive(
+            :: std :: clone :: Clone,
+            :: std :: marker :: Copy, 
+            :: std :: hash :: Hash,
+        )]
         #[repr(C)]
         pub struct DateTime {
             pub UniversalTime: i64,
@@ -50,12 +54,14 @@ pub mod Windows {
             const SIGNATURE: ::windows::ConstBuffer =
                 ::windows::ConstBuffer::from_slice(b"struct(Windows.Foundation.DateTime;i8)");
         }
+
         #[repr(transparent)]
         #[derive(
             :: std :: cmp :: PartialEq,
             :: std :: cmp :: Eq,
             :: std :: clone :: Clone,
             :: std :: fmt :: Debug,
+            :: std :: hash :: Hash,
         )]
         pub struct IPropertyValue(::windows::IInspectable);
         unsafe impl ::windows::Interface for IPropertyValue {
@@ -793,6 +799,7 @@ pub mod Windows {
             :: std :: cmp :: Eq,
             :: std :: clone :: Clone,
             :: std :: fmt :: Debug,
+            :: std :: hash :: Hash,
         )]
         #[doc(hidden)]
         pub struct IPropertyValueStatics(::windows::IInspectable);
@@ -1048,6 +1055,7 @@ pub mod Windows {
             :: std :: cmp :: Eq,
             :: std :: clone :: Clone,
             :: std :: fmt :: Debug,
+            :: std :: hash :: Hash,
         )]
         pub struct IReference<T>(::windows::IInspectable, ::std::marker::PhantomData<T>)
         where
@@ -1672,6 +1680,7 @@ pub mod Windows {
             :: std :: cmp :: Eq,
             :: std :: clone :: Clone,
             :: std :: fmt :: Debug,
+            :: std :: hash :: Hash,
         )]
         pub struct IStringable(::windows::IInspectable);
         unsafe impl ::windows::Interface for IStringable {
@@ -1768,7 +1777,11 @@ pub mod Windows {
                 result__: *mut ::windows::RawPtr,
             ) -> ::windows::HRESULT,
         );
-        #[derive(:: std :: clone :: Clone, :: std :: marker :: Copy)]
+        #[derive(
+            :: std :: clone :: Clone,
+            :: std :: marker :: Copy,
+            :: std :: hash :: Hash, 
+        )]
         #[repr(C)]
         pub struct Point {
             pub X: f32,
@@ -1809,6 +1822,7 @@ pub mod Windows {
             :: std :: clone :: Clone,
             :: std :: default :: Default,
             :: std :: fmt :: Debug,
+            :: std :: hash :: Hash, 
         )]
         #[repr(transparent)]
         pub struct PropertyType(pub i32);
@@ -2421,7 +2435,11 @@ pub mod Windows {
         impl ::windows::RuntimeName for PropertyValue {
             const NAME: &'static str = "Windows.Foundation.PropertyValue";
         }
-        #[derive(:: std :: clone :: Clone, :: std :: marker :: Copy)]
+        #[derive(
+            :: std :: clone :: Clone, 
+            :: std :: marker :: Copy,
+            :: std :: hash :: Hash, 
+        )]
         #[repr(C)]
         pub struct Rect {
             pub X: f32,
@@ -2467,7 +2485,11 @@ pub mod Windows {
             const SIGNATURE: ::windows::ConstBuffer =
                 ::windows::ConstBuffer::from_slice(b"struct(Windows.Foundation.Rect;f4;f4;f4;f4)");
         }
-        #[derive(:: std :: clone :: Clone, :: std :: marker :: Copy)]
+        #[derive(
+            :: std :: clone :: Clone, 
+            :: std :: marker :: Copy,
+            :: std :: hash :: Hash, 
+        )]
         #[repr(C)]
         pub struct Size {
             pub Width: f32,
@@ -2504,7 +2526,11 @@ pub mod Windows {
             const SIGNATURE: ::windows::ConstBuffer =
                 ::windows::ConstBuffer::from_slice(b"struct(Windows.Foundation.Size;f4;f4)");
         }
-        #[derive(:: std :: clone :: Clone, :: std :: marker :: Copy)]
+        #[derive(
+            :: std :: clone :: Clone, 
+            :: std :: marker :: Copy,
+            :: std :: hash :: Hash, 
+        )]
         #[repr(C)]
         pub struct TimeSpan {
             pub Duration: i64,
@@ -2581,7 +2607,8 @@ pub mod Windows {
                 :: std :: marker :: Copy,
                 :: std :: cmp :: PartialEq,
                 :: std :: cmp :: Eq,
-                :: std :: fmt :: Debug,
+                :: std :: fmt :: Debug, 
+                :: std :: hash :: Hash, 
             )]
             pub struct BOOL(pub i32);
             unsafe impl ::windows::Abi for BOOL {

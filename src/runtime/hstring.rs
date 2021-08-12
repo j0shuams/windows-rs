@@ -7,6 +7,7 @@ use std::result::Result as StdResult;
 /// A WinRT string, sometimes called an [HSTRING](https://docs.microsoft.com/en-us/windows/win32/winrt/hstring),
 /// is reference-counted and logically immutable. It should only be used for communicating with WinRT APIs.
 #[repr(transparent)]
+#[derive(:: std :: hash :: Hash)]
 pub struct HSTRING(*mut Header);
 
 impl HSTRING {
