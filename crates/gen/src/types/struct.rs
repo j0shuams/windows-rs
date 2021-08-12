@@ -43,7 +43,7 @@ impl Struct {
         if fields.is_empty() {
             return quote! {
                 #[repr(C)]
-                #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug, ::std::cmp::PartialEq, ::std::cmp::Eq, ::std::marker::Copy)]
+                #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug, ::std::cmp::PartialEq, ::std::cmp::Eq, ::std::marker::Copy, ::std::hash::Hash)]
                 pub struct #name(pub u8);
             };
         }
@@ -91,7 +91,7 @@ impl Struct {
 
         let clone_or_copy = if self.0.is_blittable() {
             quote! {
-                #[derive(::std::clone::Clone, ::std::marker::Copy)]
+                #[derive(::std::clone::Clone, ::std::marker::Copy, ::std::hash::Hash)]
             }
         } else if is_union || has_union || is_packed {
             quote! {
@@ -104,7 +104,7 @@ impl Struct {
             }
         } else {
             quote! {
-                #[derive(::std::clone::Clone)]
+                #[derive(::std::clone::Clone, ::std::hash::Hash)]
             }
         };
 
@@ -177,7 +177,7 @@ impl Struct {
             quote! {
                 #repr
                 #[doc(hidden)]
-                #[derive(::std::clone::Clone, ::std::marker::Copy)]
+                #[derive(::std::clone::Clone, ::std::marker::Copy, ::std::hash::Hash)]
                 pub #struct_or_union #abi_name{ #fields }
                 unsafe impl ::windows::Abi for #name {
                     type Abi = #abi_name;
