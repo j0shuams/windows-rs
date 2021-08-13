@@ -1062,13 +1062,16 @@ pub mod Windows {
         #[repr(transparent)]
         #[derive(
             :: std :: cmp :: PartialEq,
+            :: std :: cmp :: Eq,
+            :: std :: cmp :: PartialOrd,
+            :: std :: cmp :: Ord,
             :: std :: clone :: Clone,
             :: std :: fmt :: Debug,
         )]
         pub struct IReference<T>(::windows::IInspectable, ::std::marker::PhantomData<T>)
         where
             T: ::windows::RuntimeType + 'static;
-        unsafe impl<T: ::windows::RuntimeType + 'static> ::windows::Interface for IReference<T> {
+        unsafe impl<T: ::windows::RuntimeType + 'static + ::std::cmp::Ord> ::windows::Interface for IReference<T> {
             type Vtable = IReference_abi<T>;
             const IID: ::windows::Guid = ::windows::Guid::from_signature(
                 <IReference<T> as ::windows::RuntimeType>::SIGNATURE,
@@ -1557,7 +1560,7 @@ pub mod Windows {
                 }
             }
         }
-        unsafe impl<T: ::windows::RuntimeType + 'static> ::windows::RuntimeType for IReference<T> {
+        unsafe impl<T: ::windows::RuntimeType + 'static + ::std::cmp::Ord> ::windows::RuntimeType for IReference<T> {
             const SIGNATURE: ::windows::ConstBuffer = {
                 ::windows::ConstBuffer::new()
                     .push_slice(b"pinterface(")
