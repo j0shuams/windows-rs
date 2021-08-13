@@ -210,7 +210,8 @@ impl Struct {
                     }
                 }
                 impl ::std::cmp::Eq for #name {}
-                // impl ::std::cmp::Ord for #name {}
+                impl ::std::cmp::PartialOrd for #name {}
+                impl ::std::cmp::Ord for #name {}
             }
         } else {
             let compare = fields
@@ -244,12 +245,8 @@ impl Struct {
                         }
                     }
                     impl ::std::cmp::Eq for #name {}
-                    /*
-                    impl ::std::cmp::PartialOrd for #name {
-                        fn
-                    }
+                    impl ::std::cmp::PartialOrd for #name { }
                     impl ::std::cmp::Ord for #name {}
-                    */ 
                 }
             } else {
                 quote! {
@@ -259,7 +256,8 @@ impl Struct {
                         }
                     }
                     impl ::std::cmp::Eq for #name {}
-                    // impl ::std::cmp::Ord for #name {}
+                    impl ::std::cmp::PartialOrd for #name { }
+                    impl ::std::cmp::Ord for #name {}
                 }
             }
         };
