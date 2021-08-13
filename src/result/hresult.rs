@@ -7,7 +7,7 @@ use bindings::{
 
 /// A primitive error code value returned by most COM functions.
 #[repr(transparent)]
-#[derive(Copy, Clone, Default, Debug, Eq, PartialEq)]
+#[derive(Copy, Clone, Default, Debug, Eq, PartialEq, PartialOrd, Ord)]
 #[must_use]
 #[allow(non_camel_case_types)]
 pub struct HRESULT(pub u32);

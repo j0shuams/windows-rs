@@ -4,6 +4,7 @@ use crate::*;
 /// [IUnknown](https://docs.microsoft.com/en-us/windows/win32/api/unknwn/nn-unknwn-iunknown)
 /// under the hood to provide reference-counted lifetime management as well as the ability
 /// to query for additional interfaces that the object may implement.
+#[derive(PartialOrd, Ord)]
 #[repr(transparent)]
 pub struct IUnknown(std::ptr::NonNull<std::ffi::c_void>);
 

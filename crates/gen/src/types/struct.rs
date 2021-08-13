@@ -43,7 +43,7 @@ impl Struct {
         if fields.is_empty() {
             return quote! {
                 #[repr(C)]
-                #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug, ::std::cmp::PartialEq, ::std::cmp::Eq, ::std::marker::Copy)]
+                #[derive(::std::clone::Clone, ::std::default::Default, ::std::fmt::Debug, ::std::cmp::PartialEq, ::std::cmp::Eq, ::std::cmp::PartialOrd, ::std::cmp::Ord, ::std::marker::Copy)]
                 pub struct #name(pub u8);
             };
         }
@@ -210,6 +210,7 @@ impl Struct {
                     }
                 }
                 impl ::std::cmp::Eq for #name {}
+                // impl ::std::cmp::Ord for #name {}
             }
         } else {
             let compare = fields
@@ -243,6 +244,12 @@ impl Struct {
                         }
                     }
                     impl ::std::cmp::Eq for #name {}
+                    /*
+                    impl ::std::cmp::PartialOrd for #name {
+                        fn
+                    }
+                    impl ::std::cmp::Ord for #name {}
+                    */ 
                 }
             } else {
                 quote! {
@@ -252,6 +259,7 @@ impl Struct {
                         }
                     }
                     impl ::std::cmp::Eq for #name {}
+                    // impl ::std::cmp::Ord for #name {}
                 }
             }
         };

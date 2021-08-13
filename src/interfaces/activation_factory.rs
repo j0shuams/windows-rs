@@ -5,7 +5,7 @@ use crate::*;
 /// [IActivationFactory](https://docs.microsoft.com/en-us/windows/win32/api/activation/nn-activation-iactivationfactory)
 /// interface.
 #[repr(transparent)]
-#[derive(Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq, PartialOrd, Ord)]
 pub struct IActivationFactory(IInspectable);
 
 impl IActivationFactory {

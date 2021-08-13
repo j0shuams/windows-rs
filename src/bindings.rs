@@ -18,7 +18,12 @@ pub mod Windows {
         clippy::all
     )]
     pub mod Foundation {
-        #[derive(:: std :: clone :: Clone, :: std :: marker :: Copy)]
+        #[derive(
+            :: std :: clone :: Clone,
+            :: std :: marker :: Copy,
+            :: std :: cmp :: PartialOrd,
+            :: std :: cmp :: Ord,
+        )]
         #[repr(C)]
         pub struct DateTime {
             pub UniversalTime: i64,
@@ -42,6 +47,14 @@ pub mod Windows {
             }
         }
         impl ::std::cmp::Eq for DateTime {}
+        /*
+        impl ::std::cmp::PartialOrd for DateTime {
+            fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+                return Some(self.UniversalTime.cmp(&other.UniversalTime));// < other.UniversalTime)
+            }
+        }
+        impl ::std::cmp::Ord for DateTime {}
+        */
         unsafe impl ::windows::Abi for DateTime {
             type Abi = Self;
             type DefaultType = Self;
@@ -54,6 +67,8 @@ pub mod Windows {
         #[derive(
             :: std :: cmp :: PartialEq,
             :: std :: cmp :: Eq,
+            :: std :: cmp :: PartialOrd,
+            :: std :: cmp :: Ord,
             :: std :: clone :: Clone,
             :: std :: fmt :: Debug,
         )]
@@ -791,6 +806,8 @@ pub mod Windows {
         #[derive(
             :: std :: cmp :: PartialEq,
             :: std :: cmp :: Eq,
+            :: std :: cmp :: PartialOrd,
+            :: std :: cmp :: Ord,
             :: std :: clone :: Clone,
             :: std :: fmt :: Debug,
         )]
@@ -1045,7 +1062,6 @@ pub mod Windows {
         #[repr(transparent)]
         #[derive(
             :: std :: cmp :: PartialEq,
-            :: std :: cmp :: Eq,
             :: std :: clone :: Clone,
             :: std :: fmt :: Debug,
         )]
@@ -1670,6 +1686,8 @@ pub mod Windows {
         #[derive(
             :: std :: cmp :: PartialEq,
             :: std :: cmp :: Eq,
+            :: std :: cmp :: PartialOrd,
+            :: std :: cmp :: Ord,
             :: std :: clone :: Clone,
             :: std :: fmt :: Debug,
         )]
@@ -1768,7 +1786,12 @@ pub mod Windows {
                 result__: *mut ::windows::RawPtr,
             ) -> ::windows::HRESULT,
         );
-        #[derive(:: std :: clone :: Clone, :: std :: marker :: Copy)]
+        #[derive(
+            :: std :: clone :: Clone,
+            :: std :: marker :: Copy,
+            :: std :: cmp :: PartialOrd,
+            :: std :: cmp :: Ord,
+        )]
         #[repr(C)]
         pub struct Point {
             pub X: f32,
@@ -1809,6 +1832,8 @@ pub mod Windows {
             :: std :: clone :: Clone,
             :: std :: default :: Default,
             :: std :: fmt :: Debug,
+            :: std :: cmp :: PartialOrd,
+            :: std :: cmp :: Ord,
         )]
         #[repr(transparent)]
         pub struct PropertyType(pub i32);
@@ -2459,6 +2484,18 @@ pub mod Windows {
             }
         }
         impl ::std::cmp::Eq for Rect {}
+        /*
+        impl ::std::cmp::PartialOrd for Rect {
+            fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+                self.Height.partial_cmp(&other.Height)
+            }
+        }
+        impl ::std::cmp::Ord for Rect {
+            fn cmp(&self, other: &Self) -> Ordering {
+                self.Height.total_cmp(&other.Height)
+            }
+        }
+        */
         unsafe impl ::windows::Abi for Rect {
             type Abi = Self;
             type DefaultType = Self;
@@ -2504,7 +2541,12 @@ pub mod Windows {
             const SIGNATURE: ::windows::ConstBuffer =
                 ::windows::ConstBuffer::from_slice(b"struct(Windows.Foundation.Size;f4;f4)");
         }
-        #[derive(:: std :: clone :: Clone, :: std :: marker :: Copy)]
+        #[derive(
+            :: std :: clone :: Clone,
+            :: std :: marker :: Copy,
+            :: std :: cmp :: PartialOrd,
+            :: std :: cmp :: Ord,
+        )]
         #[repr(C)]
         pub struct TimeSpan {
             pub Duration: i64,
@@ -2581,6 +2623,8 @@ pub mod Windows {
                 :: std :: marker :: Copy,
                 :: std :: cmp :: PartialEq,
                 :: std :: cmp :: Eq,
+                :: std :: cmp :: PartialOrd,
+                :: std :: cmp :: Ord,
                 :: std :: fmt :: Debug,
             )]
             pub struct BOOL(pub i32);
@@ -2662,7 +2706,7 @@ pub mod Windows {
                 }
             }
             #[repr(transparent)]
-            #[derive(:: std :: cmp :: Eq)]
+            #[derive(:: std :: cmp :: Eq, :: std :: cmp :: PartialOrd, :: std :: cmp :: Ord)]
             pub struct BSTR(*mut u16);
             impl BSTR {
                 #[doc = r" Create an empty `BSTR`."]
@@ -2807,7 +2851,12 @@ pub mod Windows {
             pub const E_NOINTERFACE: ::windows::HRESULT = ::windows::HRESULT(-2147467262i32 as _);
             pub const E_POINTER: ::windows::HRESULT = ::windows::HRESULT(-2147467261i32 as _);
             pub type FARPROC = unsafe extern "system" fn() -> isize;
-            #[derive(:: std :: clone :: Clone, :: std :: marker :: Copy)]
+            #[derive(
+                :: std :: clone :: Clone,
+                :: std :: marker :: Copy,
+                :: std :: cmp :: PartialOrd,
+                :: std :: cmp :: Ord,
+            )]
             #[repr(transparent)]
             pub struct HANDLE(pub isize);
             impl HANDLE {}
@@ -2843,7 +2892,12 @@ pub mod Windows {
                     self.0 == -1
                 }
             }
-            #[derive(:: std :: clone :: Clone, :: std :: marker :: Copy)]
+            #[derive(
+                :: std :: clone :: Clone,
+                :: std :: marker :: Copy,
+                :: std :: cmp :: PartialOrd,
+                :: std :: cmp :: Ord,
+            )]
             #[repr(transparent)]
             pub struct HINSTANCE(pub isize);
             impl HINSTANCE {}
@@ -2880,6 +2934,8 @@ pub mod Windows {
                 :: std :: clone :: Clone,
                 :: std :: marker :: Copy,
                 :: std :: cmp :: Eq,
+                :: std :: cmp :: PartialOrd,
+                :: std :: cmp :: Ord,
                 :: std :: fmt :: Debug,
             )]
             pub struct PSTR(pub *mut u8);
@@ -2937,6 +2993,8 @@ pub mod Windows {
                 :: std :: clone :: Clone,
                 :: std :: marker :: Copy,
                 :: std :: cmp :: Eq,
+                :: std :: cmp :: PartialOrd,
+                :: std :: cmp :: Ord,
                 :: std :: fmt :: Debug,
             )]
             pub struct PWSTR(pub *mut u16);
@@ -3039,7 +3097,12 @@ pub mod Windows {
             clippy::all
         )]
         pub mod Security {
-            #[derive(:: std :: clone :: Clone, :: std :: marker :: Copy)]
+            #[derive(
+                :: std :: clone :: Clone,
+                :: std :: marker :: Copy,
+                :: std :: cmp :: PartialOrd,
+                :: std :: cmp :: Ord,
+            )]
             #[repr(C)]
             pub struct SECURITY_ATTRIBUTES {
                 pub nLength: u32,
@@ -3140,6 +3203,8 @@ pub mod Windows {
                 #[derive(
                     :: std :: cmp :: PartialEq,
                     :: std :: cmp :: Eq,
+                    :: std :: cmp :: PartialOrd,
+                    :: std :: cmp :: Ord,
                     :: std :: clone :: Clone,
                     :: std :: fmt :: Debug,
                 )]
@@ -3213,6 +3278,8 @@ pub mod Windows {
                     #[derive(
                         :: std :: cmp :: PartialEq,
                         :: std :: cmp :: Eq,
+                        :: std :: cmp :: PartialOrd,
+                        :: std :: cmp :: Ord,
                         :: std :: marker :: Copy,
                         :: std :: clone :: Clone,
                         :: std :: default :: Default,
@@ -3314,6 +3381,8 @@ pub mod Windows {
                     #[derive(
                         :: std :: cmp :: PartialEq,
                         :: std :: cmp :: Eq,
+                        :: std :: cmp :: PartialOrd,
+                        :: std :: cmp :: Ord,
                         :: std :: marker :: Copy,
                         :: std :: clone :: Clone,
                         :: std :: default :: Default,
@@ -3440,6 +3509,8 @@ pub mod Windows {
                 #[derive(
                     :: std :: cmp :: PartialEq,
                     :: std :: cmp :: Eq,
+                    :: std :: cmp :: PartialOrd,
+                    :: std :: cmp :: Ord,
                     :: std :: marker :: Copy,
                     :: std :: clone :: Clone,
                     :: std :: default :: Default,
@@ -3543,7 +3614,12 @@ pub mod Windows {
                     #[cfg(not(windows))]
                     unimplemented!("Unsupported target OS");
                 }
-                #[derive(:: std :: clone :: Clone, :: std :: marker :: Copy)]
+                #[derive(
+                    :: std :: clone :: Clone,
+                    :: std :: marker :: Copy,
+                    :: std :: cmp :: PartialOrd,
+                    :: std :: cmp :: Ord,
+                )]
                 #[repr(transparent)]
                 pub struct HeapHandle(pub isize);
                 impl HeapHandle {}
@@ -3608,6 +3684,8 @@ pub mod Windows {
                 #[derive(
                     :: std :: cmp :: PartialEq,
                     :: std :: cmp :: Eq,
+                    :: std :: cmp :: PartialOrd,
+                    :: std :: cmp :: Ord,
                     :: std :: clone :: Clone,
                     :: std :: fmt :: Debug,
                 )]
@@ -3807,6 +3885,8 @@ pub mod Windows {
                 #[derive(
                     :: std :: cmp :: PartialEq,
                     :: std :: cmp :: Eq,
+                    :: std :: cmp :: PartialOrd,
+                    :: std :: cmp :: Ord,
                     :: std :: marker :: Copy,
                     :: std :: clone :: Clone,
                     :: std :: default :: Default,
@@ -3887,6 +3967,8 @@ pub mod Windows {
                 #[derive(
                     :: std :: cmp :: PartialEq,
                     :: std :: cmp :: Eq,
+                    :: std :: cmp :: PartialOrd,
+                    :: std :: cmp :: Ord,
                     :: std :: clone :: Clone,
                     :: std :: fmt :: Debug,
                 )]
@@ -3956,6 +4038,8 @@ pub mod Windows {
                 #[derive(
                     :: std :: cmp :: PartialEq,
                     :: std :: cmp :: Eq,
+                    :: std :: cmp :: PartialOrd,
+                    :: std :: cmp :: Ord,
                     :: std :: clone :: Clone,
                     :: std :: fmt :: Debug,
                 )]
@@ -4097,6 +4181,8 @@ pub mod Windows {
                 #[derive(
                     :: std :: cmp :: PartialEq,
                     :: std :: cmp :: Eq,
+                    :: std :: cmp :: PartialOrd,
+                    :: std :: cmp :: Ord,
                     :: std :: clone :: Clone,
                     :: std :: fmt :: Debug,
                 )]
@@ -4191,6 +4277,8 @@ pub mod Windows {
                 #[derive(
                     :: std :: cmp :: PartialEq,
                     :: std :: cmp :: Eq,
+                    :: std :: cmp :: PartialOrd,
+                    :: std :: cmp :: Ord,
                     :: std :: clone :: Clone,
                     :: std :: fmt :: Debug,
                 )]
@@ -4255,6 +4343,8 @@ pub mod Windows {
                 #[derive(
                     :: std :: cmp :: PartialEq,
                     :: std :: cmp :: Eq,
+                    :: std :: cmp :: PartialOrd,
+                    :: std :: cmp :: Ord,
                     :: std :: clone :: Clone,
                     :: std :: fmt :: Debug,
                 )]
