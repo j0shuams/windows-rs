@@ -1,6 +1,6 @@
 fn main() {
     windows::build! {
-        Windows::Foundation::Collections::{IIterable, IVectorView},
+        Windows::Foundation::Collections::{IIterable, IVectorView, IVector},
         Windows::Foundation::{IClosable, IStringable, Uri},
         Windows::Storage::Streams::Buffer,
         Windows::Win32::Foundation::E_BOUNDS,
